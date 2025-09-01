@@ -13,12 +13,12 @@ int main() {
 
 	sleep(1); //Wait for the MPU6050 to stabilize
 
-/*
+/**/
 	//Calculate the offsets
 	std::cout << "Calculating the offsets...\n    Please keep the accelerometer level and still\n    This could take a couple of minutes...";
 	device.getOffsets(&ax, &ay, &az, &gr, &gp, &gy);
 	std::cout << "Gyroscope R,P,Y: " << gr << "," << gp << "," << gy << "\nAccelerometer X,Y,Z: " << ax << "," << ay << "," << az << "\n";
-*/
+/**/
 
 	//Read the current yaw angle
 	device.calc_yaw = true;
