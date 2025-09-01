@@ -6,8 +6,6 @@ git clone https://github.com/alanbjohnston/MPU6050-C-CPP-Library-for-Raspberry-P
 <br>
 sudo apt-get install libi2c-dev i2c-tools libi2c0
 <br>
-# only libi2c-dev installed
-<br>
 changed Example.cpp to " " instead of < > 
 <br>
 # make
