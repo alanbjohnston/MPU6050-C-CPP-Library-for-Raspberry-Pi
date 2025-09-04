@@ -20,7 +20,7 @@ int main() {
 	
 	int status = ioctl(f_dev, I2C_SLAVE, 0x68); //Set the I2C bus to use the correct address
 	if (status < 0) {
-			std::cout << "ERR (MPU6050.cpp:MPU6050()): Could not get I2C bus with " << addr << " address. Please confirm that this address is correct\n"; //Print error message
+			std::cout << "ERR (MPU6050.cpp:MPU6050()): Could not get I2C bus with 0x68 address. Please confirm that this address is correct\n"; //Print error message
 	}
 
 /*
