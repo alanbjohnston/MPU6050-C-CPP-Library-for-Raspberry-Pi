@@ -4,7 +4,7 @@
 
 //Example code modified by Alan Johnston
 
-#include <MPU6050.h>
+#include "MPU6050.h"
 
 MPU6050 device(0x68);
 
