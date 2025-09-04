@@ -11,8 +11,13 @@ MPU6050 device(0x68);
 int main() {
 	float ax, ay, az, gr, gp, gy; //Variables to store the accel, gyro and angle values
 
-	sleep(1); //Wait for the MPU6050 to stabilize
+//	sleep(1); //Wait for the MPU6050 to stabilize
 
+int status = ioctl(f_dev, I2C_SLAVE, 0x68); //Set the I2C bus to use the correct address
+if (status < 0) {
+		std::cout << "ERR (MPU6050.cpp:MPU6050()): Could not get I2C bus with " << addr << " address. Please confirm that this address is correct\n"; //Print error message
+}
+	
 /*
 	//Calculate the offsets
 	std::cout << "Calculating the offsets...\n    Please keep the accelerometer level and still\n    This could take a couple of minutes...";
