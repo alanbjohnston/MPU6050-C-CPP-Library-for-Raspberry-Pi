@@ -32,8 +32,6 @@ int main() {
 	std::cout << "Gyroscope R,P,Y: " << gr << "," << gp << "," << gy << "\nAccelerometer X,Y,Z: " << ax << "," << ay << "," << az << "\n";
 */
 
-	//Read the current yaw angle
-	device.calc_yaw = true;
 
 //	for (int i = 0; i < 40; i++) {
 
@@ -45,15 +43,17 @@ int main() {
   	device.getAccel(&ax, &ay, &az);
 //  	std::cout << "Accelerometer Readings: X: " << ax << ", Y: " << ay << ", Z: " << az << "\n";    
   	std::cout << ax << " " << ay << " " << az << " ";    
-  
-  
+	
+	//Read the current yaw angle  
+  	device.calc_yaw = true;
+
 		device.getAngle(0, &gr);
 		device.getAngle(1, &gp);
 		device.getAngle(2, &gy);
 //		std::cout << "Current angle around the roll axis: " << gr << "\n";
 //		std::cout << "Current angle around the pitch axis: " << gp << "\n";
 //		std::cout << "Current angle around the yaw axis: " << gy << "\n";
-		std::cout << gy <<  gp <<  gr << "\n";
+		std::cout << gy << " " <<  gp << " " <<  gr << "\n";
 
   	//Get the current accelerometer values
 
