@@ -14,11 +14,13 @@ int main() {
 //	sleep(1); //Wait for the MPU6050 to stabilize
 
 	int f_dev = open("/dev/i2c-1", O_RDWR); //Open the I2C device file
+	std::cout << f_dev;
 	if (f_dev < 0) { //Catch errors
 		std::cout << "ERR (MPU6050.cpp:MPU6050()): Failed to open /dev/i2c-1. Please check that I2C is enabled with raspi-config\n"; //Print error message
 	}	
 	
 	int status = ioctl(f_dev, I2C_SLAVE, 0x68); //Set the I2C bus to use the correct address
+	std::cout << status;
 	if (status < 0) {
 			std::cout << "ERR (MPU6050.cpp:MPU6050()): Could not get I2C bus with 0x68 address. Please confirm that this address is correct\n"; //Print error message
 	}
