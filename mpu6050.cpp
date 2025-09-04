@@ -25,7 +25,7 @@ int main() {
 		std::cout << "ERR (MPU6050.cpp:MPU6050()): Could not get I2C bus with 0x68 address. Please confirm that this address is correct\n"; //Print error message
 	}
 
-	if (i2c_smbus_read_byte_data(f_dev, 0x43)) < 0)
+	if (i2c_smbus_read_byte_data(f_dev, 0x43) < 0)
 				std::cout << "ERR (MPU6050.cpp:MPU6050()): Could not read I2C bus with 0x68 address. Please confirm that this address is correct\n"; //Print error message
 
 /*
