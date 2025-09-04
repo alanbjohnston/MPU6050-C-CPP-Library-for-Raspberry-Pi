@@ -17,7 +17,7 @@ int main() {
 //	std::cout << f_dev << "\n";
 	if (f_dev < 0) { //Catch errors
 //		std::cout << "ERR (MPU6050.cpp:MPU6050()): Failed to open /dev/i2c-1. Please check that I2C is enabled with raspi-config\n"; //Print error message
-		std::cout "0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0\n"
+		std::cout << "0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0\n"
 		return(-1);	
 	}	
 	
@@ -25,13 +25,13 @@ int main() {
 //	std::cout << status<< "\n";
 	if (status < 0) {
 //		std::cout << "ERR (MPU6050.cpp:MPU6050()): Could not get I2C bus with 0x68 address. Please confirm that this address is correct\n"; //Print error message
-		std::cout "0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0\n"
+		std::cout << "0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0\n"
 		return(-1);	
 	}
 
 	if (i2c_smbus_read_byte_data(f_dev, 0x43) < 0) {
 //		std::cout << "ERR (MPU6050.cpp:MPU6050()): Could not read I2C bus with 0x68 address. Please confirm that this address is correct\n"; //Print error message
-		std::cout "0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0\n"
+		std::cout << "0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0\n"
 		return(-1);			
 	}
 /*
