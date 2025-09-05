@@ -58,13 +58,13 @@ int main() {
 	//Read the current yaw angle  
   	device.calc_yaw = true;
 
-		device.getAngle(0, &gr);
-		device.getAngle(1, &gp);
-		device.getAngle(2, &gy);
+		device.getAngle(0, &gx);
+		device.getAngle(1, &gy);
+		device.getAngle(2, &gz);
 //		std::cout << "Current angle around the roll axis: " << gr << "\n";
 //		std::cout << "Current angle around the pitch axis: " << gp << "\n";
 //		std::cout << "Current angle around the yaw axis: " << gy << "\n";
-		std::cout << gy << " " <<  gp << " " <<  gr << "\n";
+		std::cout << gz << " " <<  gy << " " <<  gx << "\n";
 
   	//Get the current accelerometer values
 
