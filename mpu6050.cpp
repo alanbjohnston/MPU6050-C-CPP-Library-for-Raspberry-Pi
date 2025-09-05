@@ -42,7 +42,7 @@ int main() {
 	device.getOffsets(&ax, &ay, &az, &gr, &gp, &gy);
 	std::cout << "Gyroscope R,P,Y: " << gr << "," << gp << "," << gy << "\nAccelerometer X,Y,Z: " << ax << "," << ay << "," << az << "\n";
 */
-	float ax_offset = -0.26, ay_offset = 0.52, az_offset = 1.83;
+	float ax_offset = -0.26, ay_offset = 0.52, az_offset = 0.83;
 
 //	for (int i = 0; i < 40; i++) {
 
