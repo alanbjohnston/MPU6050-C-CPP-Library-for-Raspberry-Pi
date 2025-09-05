@@ -47,6 +47,27 @@ int main() {
 //		std::cout << "Current angle around the yaw axis: " << gy << "\n";
 		std::cout << gz << " " <<  gy << " " <<  gx << "\n";
 
+	sleep(1); 
+
+		device.getAngle(0, &gx);
+		device.getAngle(1, &gy);
+		device.getAngle(2, &gz);
+//		std::cout << "Current angle around the roll axis: " << gr << "\n";
+//		std::cout << "Current angle around the pitch axis: " << gp << "\n";
+//		std::cout << "Current angle around the yaw axis: " << gy << "\n";
+		std::cout << gz << " " <<  gy << " " <<  gx << "\n";
+
+	
+	sleep(1); 
+
+		device.getAngle(0, &gx);
+		device.getAngle(1, &gy);
+		device.getAngle(2, &gz);
+//		std::cout << "Current angle around the roll axis: " << gr << "\n";
+//		std::cout << "Current angle around the pitch axis: " << gp << "\n";
+//		std::cout << "Current angle around the yaw axis: " << gy << "\n";
+		std::cout << gz << " " <<  gy << " " <<  gx << "\n";
+	
   	//Get the current accelerometer values
 
 //		usleep(1000000); //1 sec
