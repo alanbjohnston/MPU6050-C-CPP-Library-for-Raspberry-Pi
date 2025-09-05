@@ -11,7 +11,7 @@
 MPU6050 device(0x68);
 
 int main() {
-	float ax, ay, az, gr, gp, gy; //Variables to store the accel, gyro and angle values
+	float ax, ay, az, gx, gy, gz; //Variables to store the accel, gyro and angle values
 
 //	sleep(1); //Wait for the MPU6050 to stabilize
 
@@ -42,18 +42,18 @@ int main() {
 	device.getOffsets(&ax, &ay, &az, &gr, &gp, &gy);
 	std::cout << "Gyroscope R,P,Y: " << gr << "," << gp << "," << gy << "\nAccelerometer X,Y,Z: " << ax << "," << ay << "," << az << "\n";
 */
-
+	float ax_offset = -0.26, ay_offset = 0.52, az_offset = 1.83;
 
 //	for (int i = 0; i < 40; i++) {
 
       	//Get the current gyroscope values
-  	device.getGyro(&gr, &gp, &gy);
+  	device.getGyro(&gx, &gy, &gz);
 //  	std::cout << "Gyroscope Readings: X: " << gr << ", Y: " << gp << ", Z: " << gy << "\n";
-  	std::cout << gr << " " << gp << " " << gy << " ";
+  	std::cout << gx << " " << gy << " " << gz << " ";
 
   	device.getAccel(&ax, &ay, &az);
 //  	std::cout << "Accelerometer Readings: X: " << ax << ", Y: " << ay << ", Z: " << az << "\n";    
-  	std::cout << ax << " " << ay << " " << az << " ";    
+  	std::cout << (ax + ax_offset) << " " << (ay + ay_offset) << " " << (az + az_offset) << " ";    
 	
 	//Read the current yaw angle  
   	device.calc_yaw = true;
