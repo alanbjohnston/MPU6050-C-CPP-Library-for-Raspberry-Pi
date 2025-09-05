@@ -47,7 +47,7 @@ int main() {
 //		std::cout << "Current angle around the yaw axis: " << gy << "\n";
 //		std::cout << gz << " " <<  gy << " " <<  gx << "\n";
 
-	sleep(0.5); 
+	sleep(1); 
 
 		device.getAngle(0, &gx);
 		device.getAngle(1, &gy);
