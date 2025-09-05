@@ -30,6 +30,14 @@ clean:
 	rm -f Example.o
 	rm -f MPU6050.o
 	rm -f libMPU6050.so
+	rm -f mpu6050
+	rm -f mpu6050.o	
+	rm -f ypr
+	rm -f ypr.o
 
 example: Example.o
 	$(CC) $< -o Example -lMPU6050 -pthread
+
+payload: 
+	$(CC) mpu6050.cpp -o mpu6050 -lMPU6050 -pthread -li2c
+	$(CC) ypr.cpp -o ypr -lMPU6050 -pthread -li2c
