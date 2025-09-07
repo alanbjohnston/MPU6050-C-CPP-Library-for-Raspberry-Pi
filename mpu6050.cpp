@@ -10,7 +10,8 @@
 
 MPU6050 device(0x68);
 
-int main() {
+int main(int argc, char * argv[]) {
+
 	float ax, ay, az, gx, gy, gz; //Variables to store the accel, gyro and angle values
 
 //	sleep(1); //Wait for the MPU6050 to stabilize
@@ -42,22 +43,56 @@ int main() {
 	device.getOffsets(&ax, &ay, &az, &gr, &gp, &gy);
 	std::cout << "Gyroscope R,P,Y: " << gr << "," << gp << "," << gy << "\nAccelerometer X,Y,Z: " << ax << "," << ay << "," << az << "\n";
 */
-	float ax_offset = -0.26, ay_offset = 0.52, az_offset = 0.83;
+	float ax_offset, ay_offset, az_offset, gx_offset, gy_offset, gz_offset;
 
 //	for (int i = 0; i < 40; i++) {
 
       	//Get the current gyroscope values
   	device.getGyro(&gx, &gy, &gz);
 //  	std::cout << "Gyroscope Readings: X: " << gr << ", Y: " << gp << ", Z: " << gy << "\n";
-  	std::cout << gx << " " << gy << " " << gz << " ";
-
   	device.getAccel(&ax, &ay, &az);
 //  	std::cout << "Accelerometer Readings: X: " << ax << ", Y: " << ay << ", Z: " << az << "\n";    
-  	std::cout << (ax + ax_offset) << " " << (ay + ay_offset) << " " << (az + az_offset) << "\n";    
-	
 
-//		usleep(1000000); //1 sec
-//	}
+	if (argc > 1) { // save offsets
+
+		ax_offset = -1.0 * ax;
+		ay_offset = -1.0 * ay;
+		az_offset = -1.0 * az;
+		gx_offset = -1.0 * gx;
+		gy_offset = -1.0 * gy;
+		gz_offset = -1.0 * gz;		
+
+		*FILE offset_file = fopen("/home/pi/MPU6050-C-CPP-Library-for-Raspberry-Pi/offsets", "w");
+    	fprintf(offset_file, "%f %f %f %f %f %f", gx_offset, gy_offset, gz_offset, ax_offset, ay_offset, az_offset);
+    	fclose(offset_file);
+		
+	 } else {  // read offsets
+		
+		*FILE offset_file = fopen("/home/pi/MPU6050-C-CPP-Library-for-Raspberry-Pi/offsets", "r");
+		if (offset_file == NULL) {
+    		printf("Creating offset file.\n");
+
+			ax_offset = -1.0 * ax;
+			ay_offset = -1.0 * ay;
+			az_offset = -1.0 * az;
+			gx_offset = -1.0 * gx;
+			gy_offset = -1.0 * gy;
+			gz_offset = -1.0 * gz;		
+	
+			*FILE offset_file = fopen("/home/pi/MPU6050-C-CPP-Library-for-Raspberry-Pi/offsets", "w");
+	    	fprintf(offset_file, "%f %f %f %f %f %f", gx_offset, gy_offset, gz_offset, ax_offset, ay_offset, az_offset);
+	    	fclose(offset_file);
+			
+		} else {
+			
+			fscanf(offset_file, "%f %f %f %f %f %f", &gx_offset, &gy_offset, &gz_offset, &ax_offset, &ay_offset, &az_offset);
+			fclose(offset_file);
+		}
+	}
+
+	std::cout << (gx + gx_offset) << " " << (gy + gy_offset) << " " << (gz + gz_offset) << " ";
+
+  	std::cout << (ax + ax_offset) << " " << (ay + ay_offset) << " " << (az + az_offset) << "\n";    
 
 	return 0;
 }
