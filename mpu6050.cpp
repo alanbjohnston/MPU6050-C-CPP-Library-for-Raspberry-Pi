@@ -86,6 +86,8 @@ void calc_store_offsets() {
 		ay_offset = -1.0 * ay;
 		az_offset = 1.0 - az;
 
+		system("sudo rm /home/pi/MPU6050-C-CPP-Library-for-Raspberry-Pi/offsets");
+
 		FILE *offset_file = fopen("/home/pi/MPU6050-C-CPP-Library-for-Raspberry-Pi/offsets", "w");
     	fprintf(offset_file, "%f %f %f %f %f %f", gx_offset, gy_offset, gz_offset, ax_offset, ay_offset, az_offset);
     	fclose(offset_file);
