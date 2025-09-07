@@ -11,7 +11,6 @@
 MPU6050 device(0x68);
 float ax_offset, ay_offset, az_offset, gx_offset, gy_offset, gz_offset;
 
-void read_offsets();
 void calc_store_offsets();
 
 int main(int argc, char * argv[]) {
@@ -58,33 +57,14 @@ int main(int argc, char * argv[]) {
 
 	if (argc > 1) { // save offsets
 
-		gx_offset = -1.0 * gx;
-		gy_offset = -1.0 * gy;
-		gz_offset = -1.0 * gz;		
-		ax_offset = -1.0 * ax;
-		ay_offset = -1.0 * ay;
-		az_offset = 1.0 - az;
-
-		FILE *offset_file = fopen("/home/pi/MPU6050-C-CPP-Library-for-Raspberry-Pi/offsets", "w");
-    	fprintf(offset_file, "%f %f %f %f %f %f", gx_offset, gy_offset, gz_offset, ax_offset, ay_offset, az_offset);
-    	fclose(offset_file);
+		calc_store_offsets();
 		
 	 } else {  // read offsets
 		
 		FILE *offset_file = fopen("/home/pi/MPU6050-C-CPP-Library-for-Raspberry-Pi/offsets", "r");
 		if (offset_file == NULL) {
-    		printf("Creating offset file.\n");
-
-			ax_offset = -1.0 * ax;
-			ay_offset = -1.0 * ay;
-			az_offset = -1.0 * az;
-			gx_offset = -1.0 * gx;
-			gy_offset = -1.0 * gy;
-			gz_offset = -1.0 * gz;		
-	
-			FILE *offset_file = fopen("/home/pi/MPU6050-C-CPP-Library-for-Raspberry-Pi/offsets", "w");
-	    	fprintf(offset_file, "%f %f %f %f %f %f", gx_offset, gy_offset, gz_offset, ax_offset, ay_offset, az_offset);
-	    	fclose(offset_file);
+			
+    		calc_store_offsets();
 			
 		} else {
 			
@@ -102,10 +82,14 @@ int main(int argc, char * argv[]) {
 
 void calc_store_offsets() {
 
+		gx_offset = -1.0 * gx;
+		gy_offset = -1.0 * gy;
+		gz_offset = -1.0 * gz;		
+		ax_offset = -1.0 * ax;
+		ay_offset = -1.0 * ay;
+		az_offset = 1.0 - az;
 
-}
-
-void read_offsets() {
-
-
+		FILE *offset_file = fopen("/home/pi/MPU6050-C-CPP-Library-for-Raspberry-Pi/offsets", "w");
+    	fprintf(offset_file, "%f %f %f %f %f %f", gx_offset, gy_offset, gz_offset, ax_offset, ay_offset, az_offset);
+    	fclose(offset_file);
 }
