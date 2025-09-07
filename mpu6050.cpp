@@ -10,6 +10,7 @@
 
 MPU6050 device(0x68);
 float ax_offset, ay_offset, az_offset, gx_offset, gy_offset, gz_offset;
+float ax, ay, az, gx, gy, gz; //Variables to store the accel, gyro and angle values
 
 void calc_store_offsets();
 
