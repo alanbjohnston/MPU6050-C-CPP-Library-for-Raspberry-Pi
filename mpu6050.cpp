@@ -9,6 +9,10 @@
 //#include <i2c/smbus.h>
 
 MPU6050 device(0x68);
+float ax_offset, ay_offset, az_offset, gx_offset, gy_offset, gz_offset;
+
+void read_offsets();
+void calc_store_offsets();
 
 int main(int argc, char * argv[]) {
 
@@ -43,7 +47,6 @@ int main(int argc, char * argv[]) {
 	device.getOffsets(&ax, &ay, &az, &gr, &gp, &gy);
 	std::cout << "Gyroscope R,P,Y: " << gr << "," << gp << "," << gy << "\nAccelerometer X,Y,Z: " << ax << "," << ay << "," << az << "\n";
 */
-	float ax_offset, ay_offset, az_offset, gx_offset, gy_offset, gz_offset;
 
 //	for (int i = 0; i < 40; i++) {
 
@@ -95,4 +98,14 @@ int main(int argc, char * argv[]) {
   	std::cout << (ax + ax_offset) << " " << (ay + ay_offset) << " " << (az + az_offset) << "\n";    
 
 	return 0;
+}
+
+void calc_store_offsets() {
+
+
+}
+
+void read_offsets() {
+
+
 }
