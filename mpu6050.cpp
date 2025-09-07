@@ -16,10 +16,6 @@ void calc_store_offsets();
 
 int main(int argc, char * argv[]) {
 
-	float ax, ay, az, gx, gy, gz; //Variables to store the accel, gyro and angle values
-
-//	sleep(1); //Wait for the MPU6050 to stabilize
-
 	int f_dev = open("/dev/i2c-1", O_RDWR); //Open the I2C device file
 //	std::cout << f_dev << "\n";
 	if (f_dev < 0) { //Catch errors
