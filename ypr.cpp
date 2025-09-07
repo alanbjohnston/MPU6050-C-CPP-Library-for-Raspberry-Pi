@@ -52,6 +52,10 @@ int main() {
 		device.getAngle(0, &gx);
 		device.getAngle(1, &gy);
 		device.getAngle(2, &gz);
+
+		if (gx < 0) gx += 360;
+		if (gy < 0) gy += 360;
+		if (gz < 0) gz += 360;
 //		std::cout << "Current angle around the roll axis: " << gr << "\n";
 //		std::cout << "Current angle around the pitch axis: " << gp << "\n";
 //		std::cout << "Current angle around the yaw axis: " << gy << "\n";
